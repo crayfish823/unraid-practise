@@ -3,12 +3,13 @@
 2. 确保unraid系统usb drive不和要passthrough的usb controller在相同的IOMMU group中，
    即硬件ID不同（e.g. unraid在0000:06:00.1，usb controller在0000:06:00.3），以防止passthrough的时候unraid系统崩掉，
    可以更换unraid usb drive的插口来切换
-3. 编辑vm的xml（xml view），增加下面的段落
+3. 编辑vm的xml（xml view），增加下面的段落，以0000:06:00.3为例：
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <driver name='vfio'/>
       <source>
         <address domain='0x0000' bus='0x06' slot='0x00' function='0x3'/>
       </source>
     </hostdev>
+   address行中，可以看出每个字段与0000:06:00.3的对应关系
 4. 更新以后，可以在form view界面中看到最下面other pci的位置出现设备名称，如果没有，说明硬件ID不正确，未能识别
 5. 只能通过这种方式绑定lspci命令中列出的pci设备，不能直接绑定lsusb命令中列出的设备
