@@ -11,5 +11,5 @@
       </source>
     </hostdev>
    address行中，可以看出每个字段与0000:06:00.3的对应关系
-4. 更新以后，可以在form view界面中看到最下面other pci的位置出现设备名称，如果没有，说明硬件ID不正确，未能识别
+4. 更新以后，可以在form view界面中看到最下面other pci devices的位置出现设备名称，如果没有，说明硬件ID不正确，未能识别
 5. 只能通过这种方式绑定lspci命令中列出的pci设备，不能直接绑定lsusb命令中列出的设备
